@@ -4,6 +4,7 @@ import { db } from '@/app/lib/firebase';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
+const lineNotify = require('line-notify-nodejs')("jvcJUZnrHAms076BftrT1lVolmK4EWJFDVmiHqXAJZ4");
 
 export default function Home({params}) {
 
@@ -22,6 +23,15 @@ export default function Home({params}) {
     }
   }
 
+  const btn = () => {
+    setOpen(true)
+    lineNotify.notify({
+      message: 'send test',
+    }).then(() => {
+      console.log('send completed!');
+    }).catch((err) => {console.log(err);})
+  }
+
   useEffect(() => {
     fetchData()
   },[])
@@ -31,7 +41,7 @@ export default function Home({params}) {
       <div className="bg-white/40 shadow backdrop-blur-2xl border border-white rounded-xl max-w-[450px] w-full h-[300px] relative">
         <motion.div initial={{y:0,opacity:100}} animate={ isOpen ? {y:-50,opacity:0} : {}} className="bg-white backdrop-blur-2xl border p-4 rounded-xl max-w-[450px] h-[100px] w-full absolute text-black top-0 z-10 shadow-lg flex justify-center items-end">
           {data ? (
-            <button onClick={() => {setOpen(true)}} className="bg-gradient-to-tr from-pink-300 to-pink-200 h-[30px] flex items-center p-2 rounded-full shadow-xl hover:scale-105">
+            <button onClick={btn} className="bg-gradient-to-tr from-pink-300 to-pink-200 h-[30px] flex items-center p-2 rounded-full shadow-xl hover:scale-105">
               เปิดจดหมาย
             </button>
           ) : 

@@ -4,10 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { config } from 'dotenv'
 
 config()
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_KEY,
   authDomain: "spmemo-41165.firebaseapp.com",
@@ -17,7 +14,6 @@ const firebaseConfig = {
   appId: "1:220697747164:web:729ac521402391b092de19"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
